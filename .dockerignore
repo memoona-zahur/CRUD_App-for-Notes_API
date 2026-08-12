@@ -1,0 +1,15 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+.git
+.agents
+.codex
+notes-api-backend/.env
+notes-api-backend/.git
+notes-api-backend/__pycache__
+notes-api-backend/.pytest_cache
+test
+e2e
+SELF_REVIEW.md
