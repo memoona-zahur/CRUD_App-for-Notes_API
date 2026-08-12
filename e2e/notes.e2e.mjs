@@ -38,6 +38,12 @@ try {
   const context = await browser.newContext()
   const page = await context.newPage()
   const email = `e2e-${stamp}@example.com`
+  let listRequests = 0
+  page.on('request', (request) => {
+    if (request.method() === 'GET' && /\/api\/v1\/notes$/.test(request.url())) {
+      listRequests += 1
+    }
+  })
 
   await page.goto(APP_URL)
   await page.getByRole('button', { name: 'Create an account' }).click()
@@ -46,6 +52,8 @@ try {
   await page.getByRole('button', { name: 'Create my account' }).click()
   await page.getByRole('heading', { name: 'Your notes' }).waitFor()
   await page.getByRole('heading', { name: 'No notes yet' }).waitFor()
+  assert.ok(listRequests >= 1 && listRequests <= 2, 'initial load should fetch notes, at most twice in React StrictMode dev')
+  const initialListRequests = listRequests
   console.log('1. Registration, login, CORS, and initial empty list OK')
 
   await page.getByRole('button', { name: 'New note' }).click()
@@ -53,12 +61,14 @@ try {
   await page.getByLabel('Body').fill('first body')
   await page.getByRole('button', { name: 'Create note' }).click()
   await page.getByRole('heading', { name: 'First note' }).waitFor()
+  assert.equal(listRequests, initialListRequests, 'create must update state without refetching notes')
 
   await page.getByRole('button', { name: 'New note' }).click()
   await page.getByLabel('Title').fill('Second note')
   await page.getByLabel('Body').fill('second body')
   await page.getByRole('button', { name: 'Create note' }).click()
   await page.getByRole('heading', { name: 'Second note' }).waitFor()
+  assert.equal(listRequests, initialListRequests, 'second create must update state without refetching notes')
   console.log('2. Create ×2 against the real API OK')
 
   const firstCard = page.locator('.note-card', { hasText: 'First note' })
@@ -69,11 +79,13 @@ try {
   await page.getByLabel('Body').fill('edited body')
   await page.getByRole('button', { name: 'Save changes' }).click()
   await page.getByRole('heading', { name: 'First note, edited' }).waitFor()
+  assert.equal(listRequests, initialListRequests, 'update must replace state without refetching notes')
   console.log('3. Edit pre-fill and immediate in-state update OK')
 
   await page.locator('.note-card', { hasText: 'Second note' }).getByRole('button', { name: 'Delete' }).click()
   await page.getByRole('alertdialog', { name: 'Delete this note?' }).getByRole('button', { name: 'Delete note' }).click()
   await page.getByRole('heading', { name: 'Second note' }).waitFor({ state: 'detached' })
+  assert.equal(listRequests, initialListRequests, 'delete must filter state without refetching notes')
   console.log('4. Confirmed delete and immediate in-state removal OK')
 
   const stalePage = await context.newPage()
