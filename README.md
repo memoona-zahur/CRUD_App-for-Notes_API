@@ -29,6 +29,11 @@ Open <http://localhost:5173>. The development API base is configured through
 
 ## Complete Docker stack
 
+Nginx is an optional deployment layer, not a requirement of the Week 4 Day 3
+CRUD task. The required learning path is React/Vite → the existing FastAPI
+API → PostgreSQL. Nginx is included only for a production-style single-origin
+bundle; the CRUD behavior and grading do not depend on it.
+
 ```bash
 docker compose up --build -d
 ```

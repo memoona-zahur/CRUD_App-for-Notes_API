@@ -13,6 +13,10 @@
 - [x] Containerized PostgreSQL, API, and Nginx frontend in one Compose stack
 - [x] Runs Alembic migrations automatically before FastAPI starts
 
+Nginx scope note: Nginx was added as an optional production packaging layer.
+It is not part of the day's required CRUD tasks; the required architecture is
+React/Vite talking to the existing FastAPI service backed by PostgreSQL.
+
 ## Evidence
 
 | Layer | Evidence | Result |
