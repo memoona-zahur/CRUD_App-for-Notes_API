@@ -32,7 +32,7 @@ function Login({ onLogin, initialError }) {
   }
 
   return (
-    <div className="auth">
+    <main className="auth">
       <div className="auth-card">
         <aside className="auth-showcase" aria-hidden="true">
           <div className="auth-showcase-brand">
@@ -60,7 +60,7 @@ function Login({ onLogin, initialError }) {
             <span className="auth-mobile-logo" aria-hidden="true">
               <NoteIcon size={20} />
             </span>
-            <h2>{isLogin ? 'Welcome back' : 'Create your account'}</h2>
+            <h1>{isLogin ? 'Welcome back' : 'Create your account'}</h1>
             <p>{isLogin ? 'Sign in to continue to your notes.' : 'Start collecting your ideas in one place.'}</p>
           </div>
 
@@ -118,7 +118,7 @@ function Login({ onLogin, initialError }) {
           </form>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

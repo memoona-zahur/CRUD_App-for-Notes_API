@@ -254,7 +254,7 @@
   padding: 58px 72px;
 }
 
-.auth-brand h2 {
+.auth-brand h1 {
   margin: 0 0 8px;
   font-size: 30px;
   letter-spacing: -0.9px;
@@ -312,7 +312,7 @@
   padding: 12px 13px;
   border: 1px solid var(--c-border);
   border-radius: 10px;
-  background: #f9fbfb;
+  background: var(--c-surface-2);
   color: var(--c-text);
   width: 100%;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -793,7 +793,7 @@
     background: linear-gradient(135deg, #10aa89, var(--c-accent));
   }
 
-  .auth-brand h2 { font-size: 27px; }
+  .auth-brand h1 { font-size: 27px; }
 
   .app-header-inner {
     padding: 10px 16px;

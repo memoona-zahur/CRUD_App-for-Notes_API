@@ -4,7 +4,7 @@ function NoteCard({ note, onEdit, onDelete }) {
   return (
     <article className="note-card">
       <div className="note-card-top">
-        <h3 className="note-card-title">{note.title}</h3>
+        <h2 className="note-card-title">{note.title}</h2>
         <time className="note-card-date" dateTime={note.created_at}>
           {new Date(note.created_at).toLocaleString()}
         </time>
