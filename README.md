@@ -287,7 +287,7 @@ How it works:
 - `db` — PostgreSQL 16 with a named volume (`notes_pgdata`) so data survives
   restarts.
 - `api` — the FastAPI backend built from `notes-api-backend/`, with CORS
-  allowed for `localhost:8080`.
+  allowed for the app origins (`:8080`) and the Vite dev origin (`:5173`).
 - `frontend` — a production build of the React app served by Nginx. The
   browser talks to the API through the same origin (`/api/v1/...`), which
   Nginx proxies to the API container.
