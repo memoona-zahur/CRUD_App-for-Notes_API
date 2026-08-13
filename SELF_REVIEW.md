@@ -21,7 +21,7 @@ React/Vite talking to the existing FastAPI service backed by PostgreSQL.
 
 | Layer | Evidence | Result |
 | --- | --- | --- |
-| Unit/component | Vitest + React Testing Library | 24 passed |
+| Unit/component | Vitest + React Testing Library | 25 passed |
 | API integration | Direct real FastAPI + PostgreSQL | 5 contract groups passed |
 | Browser E2E | Chromium against real app/API/database + axe | 8 checks passed |
 | Container E2E | Chromium via Nginx proxy → API → PostgreSQL | 8 checks passed |

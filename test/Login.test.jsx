@@ -67,4 +67,21 @@ describe('Login', () => {
 
     expect(screen.getByRole('alert')).toHaveTextContent('Your session has expired')
   })
+
+  test('toggles the password field between hidden and visible', async () => {
+    const user = userEvent.setup()
+
+    render(<Login onLogin={() => {}} />)
+
+    const passwordInput = screen.getByLabelText('Password')
+    expect(passwordInput).toHaveAttribute('type', 'password')
+
+    const toggle = screen.getByRole('button', { name: 'Show password' })
+    await user.click(toggle)
+    expect(passwordInput).toHaveAttribute('type', 'text')
+    expect(screen.getByRole('button', { name: 'Hide password' })).toHaveAttribute('aria-pressed', 'true')
+
+    await user.click(screen.getByRole('button', { name: 'Hide password' }))
+    expect(passwordInput).toHaveAttribute('type', 'password')
+  })
 })

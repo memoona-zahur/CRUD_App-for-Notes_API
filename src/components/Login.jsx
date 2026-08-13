@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { api } from '../api.js'
-import { NoteIcon, SpinnerIcon } from './Icons.jsx'
+import { NoteIcon, SpinnerIcon, EyeIcon, EyeOffIcon } from './Icons.jsx'
 
 function Login({ onLogin, initialError }) {
   const [mode, setMode] = useState('login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(initialError ?? null)
   const [submitting, setSubmitting] = useState(false)
 
@@ -80,16 +81,27 @@ function Login({ onLogin, initialError }) {
 
             <div className="field">
               <label htmlFor="auth-password">Password</label>
-              <input
-                id="auth-password"
-                type="password"
-                autoComplete={isLogin ? 'current-password' : 'new-password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="At least 8 characters"
-                minLength={isLogin ? undefined : 8}
-                required
-              />
+              <div className="field-password">
+                <input
+                  id="auth-password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete={isLogin ? 'current-password' : 'new-password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="At least 8 characters"
+                  minLength={isLogin ? undefined : 8}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
+                </button>
+              </div>
             </div>
 
             {error && (

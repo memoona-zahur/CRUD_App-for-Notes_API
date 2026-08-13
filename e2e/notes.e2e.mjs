@@ -92,7 +92,7 @@ try {
   await assertNoAxeViolations(page, 'login screen')
   await page.getByRole('button', { name: 'Create an account' }).click()
   await page.getByLabel('Email address').fill(email)
-  await page.getByLabel('Password').fill(PASSWORD)
+  await page.getByLabel('Password', { exact: true }).fill(PASSWORD)
   await page.getByRole('button', { name: 'Create my account' }).click()
   await page.getByRole('heading', { name: 'Your notes' }).waitFor()
   await page.getByRole('heading', { name: 'No notes yet' }).waitFor()

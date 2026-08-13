@@ -20,7 +20,8 @@ run the whole app.
 
 ## Features
 
-- Register / sign in with a persisted JWT session
+- Register / sign in with a persisted JWT session, including a show/hide
+  password toggle
 - List, create, edit (pre-filled form), and delete (with confirmation) notes
 - Real HTTP status handling: `200`, `201`, `204`, `401`, `404`, `409`, `422`
 - Search, dark mode, toasts, loading/empty states, responsive layout
@@ -249,7 +250,7 @@ APP_URL=http://localhost:8080 VITE_API_URL=http://localhost:8080/api npm run tes
 
 What the tests cover:
 
-- **Unit/component (Vitest, 24 checks)** — the fetch wrapper, login form,
+- **Unit/component (Vitest, 25 checks)** — the fetch wrapper, login form,
   note-form modal (including edit pre-fill), confirm dialog, and app-shell
   state transitions.
 - **Real API integration** — live FastAPI + PostgreSQL: health, register/login,
