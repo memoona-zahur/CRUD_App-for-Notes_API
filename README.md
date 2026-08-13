@@ -242,7 +242,7 @@ npx playwright install chromium
 ```
 
 To run the browser tests against the Dockerized app instead of the dev server
-(after Step 8 below):
+(after the Docker section below):
 
 ```bash
 APP_URL=http://localhost:8080 VITE_API_URL=http://localhost:8080/api npm run test:e2e
@@ -272,6 +272,12 @@ an Nginx-served production frontend build:
 ```bash
 docker compose up --build -d
 ```
+
+> Before this, make sure `notes-api-backend/.env` exists (Step 2 creates it —
+> the stack reads its database credentials from there). Also, the API binds
+> host port `8000`: if the quick-start backend is still running, stop it
+> first with `cd notes-api-backend && docker compose down`, or the port
+> conflict will abort the start.
 
 Open **http://localhost:8080**.
 
