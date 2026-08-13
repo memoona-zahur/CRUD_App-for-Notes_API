@@ -273,11 +273,12 @@ an Nginx-served production frontend build:
 docker compose up --build -d
 ```
 
-> Before this, make sure `notes-api-backend/.env` exists (Step 2 creates it —
-> the stack reads its database credentials from there). Also, the API binds
-> host port `8000`: if the quick-start backend is still running, stop it
-> first with `cd notes-api-backend && docker compose down`, or the port
-> conflict will abort the start.
+> This stack runs **out of the box with zero setup** — sensible default
+> credentials are built in (override them with a root `.env` using the same
+> variable names if you like). The API binds host port `8000`: if the
+> quick-start backend is still running, stop it first with
+> `cd notes-api-backend && docker compose down`, or the port conflict will
+> abort the start.
 
 Open **http://localhost:8080**.
 
