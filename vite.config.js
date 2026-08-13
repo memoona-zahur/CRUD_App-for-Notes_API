@@ -9,5 +9,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./test/setup.js'],
     css: true,
+    env: {
+      VITE_API_URL: 'http://localhost:8000/api',
+    },
   },
 })
